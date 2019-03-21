@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios';
+import axios from 'axios'
+import {Redirect, Link} from 'react-router-dom'
 
 export default class CreateAccount extends Component {
     state= {
@@ -9,7 +10,7 @@ export default class CreateAccount extends Component {
         },
         createdUser: {}
     }
-    createUser = () => {
+    createAccount = () => {
         axios.post('/api/users', {
             user: this.state.user
         }).then((res)=>{
@@ -23,11 +24,15 @@ export default class CreateAccount extends Component {
     }
     handleSignUp = (e) => {
         e.prevent.Default()
-        this.createdUser()
+        this.createdAccount()
     }
   render() {
+     if(this.state.redirectToHome === true) {
+         return (<Redirect to= {`/users/${this.state.createdUser._id}`}></Redirect>)
+     }
     return (
       <div>
+          <Link to='/'>Return Home</Link>
           <form onSubmit={this.handleSignUp}>
           <div>
         <label htmlFor="userName">Username: </label>

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import HomePage from './HomePage.js'
 
 
 export default class Activity extends Component {

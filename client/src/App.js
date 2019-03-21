@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom'
-import User from './components/User.js'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import UsernamePage from './components/UsernamePage.js'
 import HomePage from './components/HomePage.js';
 import Login from './components/Login.js'
 import Activity from './components/Activity.js'
@@ -17,6 +17,7 @@ class App extends Component {
       <Route path='/login' component={Login}></Route>
       <Route path='/activity' component={Activity}></Route>
       <Route path='/createAccount' component={CreateAccount}></Route>
+      <Route path='/users/:userId' component={UsernamePage}></Route>
     </Switch>
   </div>
 </Router>

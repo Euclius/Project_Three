@@ -25,14 +25,17 @@ componentDidMount = () => {
     return (
       <div>
         <h1>Activities:</h1>
-        {/* {this.state.activity.map(activity =>{
-          
-          <Activity 
-          key={activity._id}
-          activity={activity}
-        />
-        })} */}
+        {/* {this.state.activity.map(activity => {
+                    return (
+                        <Activity
+                            key={activity._id}
+                            activity={activity} />
+                    )
+                }
+                )
+                } */}
         <div><Link to='/'>Home Page</Link></div>
+        <div><Link to='/createActivity'>Create an Activity</Link></div>
       </div>
     )
   }

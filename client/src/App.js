@@ -5,6 +5,7 @@ import HomePage from './components/HomePage.js';
 import Login from './components/Login.js'
 import Activity from './components/Activity.js'
 import CreateAccount from './components/CreateAccount.js';
+import CreateActivity from './components/CreateActivity.js';
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
       <Route path='/activity' component={Activity}></Route>
       <Route path='/createAccount' component={CreateAccount}></Route>
       <Route path='/users/:userId' component={UsernamePage}></Route>
+      <Route path='/createActivity' component={CreateActivity}></Route>
     </Switch>
   </div>
 </Router>

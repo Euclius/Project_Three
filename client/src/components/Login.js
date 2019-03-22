@@ -8,9 +8,9 @@ export default class Login extends Component {
         users: []
     }
     componentDidMount = () => {
-        this.getAllUsers()
+        this.showAllUsers()
     }
-    getAllUsers = () => {
+    showAllUsers = () => {
         axios.get('/api/users').then(res => {
             this.setState({users: res.data})
         })
@@ -19,9 +19,11 @@ export default class Login extends Component {
     return (
       <div>
           <h1>Pick which username you are</h1>
-          {this.state.users.map(user => {
-              return (<Link to={`/users/${user._id}`} key={user._id}>{user.userName}</Link>)
-          })}
+         <div> {this.state.users.map((user) => {
+              return (<Link to={`/users/${user._id}`} 
+              key={user._id}>{user.userName}</Link>)
+          })}</div>
+          
         <div><Link to='/createAccount'>Create an account</Link></div>
         <div><Link to='/'> Return Home</Link></div>
       </div>

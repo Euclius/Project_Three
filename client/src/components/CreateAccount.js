@@ -8,12 +8,24 @@ export default class CreateAccount extends Component {
             userName: '',
             password: '',
         },
-        createdUser: {}
+        createdUser: {},
+        redirectToHome: false,
     }
+    componentDidMount = () => {
+        this.showAllUsers()
+    }
+    showAllUsers = () => {
+        axios.get('/api/users').then(res => {
+            this.setState({users: res.data})
+        })
+    }
+
     createAccount = () => {
         axios.post('/api/users', {
             user: this.state.user
         }).then((res)=>{
+            const usersList = [...this.state.users]
+            usersList.unshift(res.data)
             this.setState({createdUser: res.data})
         })
     }

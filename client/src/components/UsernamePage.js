@@ -5,7 +5,6 @@ import axios from 'axios';
 export default class User extends Component {
     state={
         userName: '',
-        password: '',
         activity: []
     }
 componentDidMount = () => {
@@ -21,10 +20,18 @@ componentDidMount = () => {
         })
     }
 }
+
   render() {
     return (
       <div>
         <h1>Activities:</h1>
+        {/* {this.state.activity.map(activity =>{
+          
+          <Activity 
+          key={activity._id}
+          activity={activity}
+        />
+        })} */}
         <div><Link to='/'>Home Page</Link></div>
       </div>
     )

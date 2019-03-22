@@ -39,7 +39,7 @@ User.findById(req.params.userId).then(user => {
 })
 }),
 
-router.delete('/:userId/activities/activities', (req, res) => {
+router.delete('/:userId/activities/:activitiesId', (req, res) => {
     User.findById(req.params.userId).then(user => {
        const filterUserActivity = user.activity.filter(activity => activity._id.toString() !== req.params.activityId)
        user.activity = filterUserActivity
@@ -48,6 +48,23 @@ router.delete('/:userId/activities/activities', (req, res) => {
            user.activity = user.activity.reverse()
            res.json(user, activities)
        })
+    })
+})
+router.patch('/:userId/activities/:activitiesId', (req, res) => {
+    User.findById(req.params.userId).then(user => {
+        const update = req.body.activity
+        const activity = user.activity.id(req.params.activityId)
+        if (update.title) {
+            activity.title = update.title
+        }
+        if (update.description) {
+            activity.description = update.description
+        }
+
+        user.save().then((user) => {
+            user.activity = user.activity.reverse()
+            res.json(user)
+        })
     })
 })
 //where it says "user.activity", that is referencing the schemas

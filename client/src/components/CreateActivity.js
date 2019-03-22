@@ -24,7 +24,7 @@ export default class CreateActivity extends Component {
         this.setState({activity: newActivity})
     }
     handleActivityCreate = (e) => {
-        e.prevent.Default()
+        e.preventDefault()
         this.createdActivty()
     }
   render() {

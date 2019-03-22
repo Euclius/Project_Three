@@ -4,6 +4,7 @@ import {Redirect, Link} from 'react-router-dom'
 
 export default class CreateAccount extends Component {
     state= {
+        users: [],
         user: {
             userName: '',
             password: '',
@@ -11,14 +12,14 @@ export default class CreateAccount extends Component {
         createdUser: {},
         redirectToHome: false,
     }
-    componentDidMount = () => {
-        this.showAllUsers()
-    }
-    showAllUsers = () => {
-        axios.get('/api/users').then(res => {
-            this.setState({users: res.data})
-        })
-    }
+    // componentDidMount = () => {
+    //     this.showAllUsers()
+    // }
+    // showAllUsers = () => {
+    //     axios.get('/api/users').then(res => {
+    //         this.setState({users: res.data})
+    //     })
+    // } wrong, remove this later. here now so I know what not to do; and i want to use this to show the users on login page
 
     createAccount = () => {
         axios.post('/api/users', {
@@ -35,8 +36,8 @@ export default class CreateAccount extends Component {
         this.setState({user: newUser})
     }
     handleSignUp = (e) => {
-        e.prevent.Default()
-        this.createdAccount()
+        e.preventDefault()
+        this.createAccount()
     }
   render() {
      if(this.state.redirectToHome === true) {

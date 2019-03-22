@@ -61,7 +61,7 @@ export default class CreateAccount extends Component {
            type="password"
            value={this.state.user.password}></input>
         </div>
-       <button>Sign Up!</button>
+    <button>Sign Up!</button>
        </form>
       </div>
     )

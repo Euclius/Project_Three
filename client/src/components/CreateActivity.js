@@ -25,7 +25,7 @@ export default class CreateActivity extends Component {
     }
     handleActivityCreate = (e) => {
         e.preventDefault()
-        this.createdActivty()
+        this.activityCreate()
     }
   render() {
       if(this.state.redirectToHome === true) {

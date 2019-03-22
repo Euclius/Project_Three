@@ -33,15 +33,15 @@ export default class Activity extends Component {
                 <div><Link to='/login'>Login Page</Link></div>
                 <div><Link to='/createActivity'>Create an Activity</Link></div>
                 <h1>activities:</h1>
-                {/* {this.state.activity.map(activity => {
+                <div>{this.state.users.activity.map(activity => {
                     return (
-                        <Activity
+                        <Link to={`/activity/${activity._id}`}
                             key={activity._id}
-                            activity={activity} />
+                            activity={activity}>{activity.title}</Link>
                     )
                 }
                 )
-                } */}
+                }</div>
             </div>
         )
     }

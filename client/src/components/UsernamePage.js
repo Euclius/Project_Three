@@ -4,9 +4,11 @@ import axios from 'axios';
 
 export default class User extends Component {
     state={
+user: {
         userName: '',
         activity: []
     }
+  }
 componentDidMount = () => {
     if (this.props.match.params) {
         axios.get(`/api/users/${this.props.match.params.userId}`)
@@ -19,6 +21,13 @@ componentDidMount = () => {
             })
         })
     }
+}
+deleteUser = () => {
+  const userId = this.props.match.params.userId
+  axios.delete(`/api/users/${userId}`)
+  .then(res => {
+    this.setState({users: res.data})
+  })
 }
 
   render() {
@@ -36,6 +45,7 @@ componentDidMount = () => {
                 } */}
         <div><Link to='/'>Home Page</Link></div>
         <div><Link to='/createActivity'>Create an Activity</Link></div>
+        <div><button onClick={()=>this.props.deleteUser(this.props.user)}>delete user</button></div>
       </div>
     )
   }

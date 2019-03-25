@@ -89,7 +89,7 @@ export default class CreateActivity extends Component {
             console.log(res.data)
             const activityList = [...this.state.activity]
             activityList.unshift(res.data)
-            this.setState({ redirectToHome: true, createdActivty: res.data })
+            this.setState({redirectToHome: true, createdActivty: res.data })
         }).catch((err) => {
             console.log('error with activity Create', err)
         })
@@ -106,7 +106,7 @@ export default class CreateActivity extends Component {
     }
     render() {
         if (this.state.redirectToHome === true) {
-            return (<Redirect to={`users/${this.state.user.userId}/activities/${this.state.createdActivty._id}`}></Redirect>)
+            return (<Redirect to={`/users/${this.state.user.userId}/activities/${this.state.createdActivty._id}`}></Redirect>)
         }
 
         return (

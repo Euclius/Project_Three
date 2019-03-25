@@ -40,11 +40,9 @@ User.findById(req.params.userId).then(user => {
 }),
 
 router.delete('/:userId', (req, res) => {
-    User.findById(req.params.userId).then(user => {
+    User.findByIdAndRemove(req.params.userId).then(user => {
         user.save()
-        .then(user=>{
-            res.json(user)
-        })
+        res.json('200 status. Deleted.')
     })
 }),
 

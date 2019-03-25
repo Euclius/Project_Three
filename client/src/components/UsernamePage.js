@@ -5,48 +5,46 @@ import axios from 'axios';
 export default class User extends Component {
   state = {
     user: {
-    userId: '',
+      userId: '',
       userName: '',
-      activity: []
-    }
+    },
+    activity: [{
+      title: ''
+    }]
   }
   componentDidMount = () => {
     if (this.props.match.params) {
       axios.get(`/api/users/${this.props.match.params.userId}`)
         .then(res => {
           this.setState({
-            activity: [res.data.activity],
+            activity: res.data.activity,
             user: {
               userName: res.data.userName,
               userId: res.data._id
-            
+
             }
           })
         })
     }
   }
   deleteUser = () => {
+    console.log('HWELLOWJE')
     const userId = this.props.match.params.userId
     axios.delete(`/api/users/${userId}`)
       .then(() => {
-        return axios.get('/api/login')
-      })
-      .then(res => {
-        console.log(res.data)
-
-        this.setState({ users: res.data })
+        this.props.history.goBack()
       })
   }
-  handleRemove = (e) => {
-    const userId = this.state.user.userId
-    // e.preventDefault()
-    axios.delete(userId)
-      .then(res => {
-        console.log(res.data)
-      }).catch((err) => {
-        console.log('error with handleRemove', err)
-      })
-  }
+  // handleRemove = (e) => {
+  //   const userId = this.state.user.userId
+  //   // e.preventDefault()
+  //   axios.delete(userId)
+  //     .then(res => {
+  //       console.log(res.data)
+  //     }).catch((err) => {
+  //       console.log('error with handleRemove', err)
+  //     })
+  // }
   render() {
     console.log(this.state.user)
     return (
@@ -77,20 +75,21 @@ export default class User extends Component {
                    )})}</div> */}
 
 
-        {/* <div>{this.state.users.activity.map(activity => {
-                     return (
-                       <Link
-                       key={activity._id}
-                       {...activity.title}></Link>
-                       
-                     )
-                   })
-                  }
-                  </div> */}
+        <div>{this.state.activity.map((activity) => {
+          return (
+            <Link
+              key={activity._id}>
+              {activity.title}
+            </Link>
+
+          )
+        })
+        }
+        </div>
         <div><Link to='/'>Home Page</Link></div>
         <div><Link to={`/${this.state.user.userId}/createActivity`}>Create an Activity</Link></div>
-        <div><button onClick={() => this.handleRemove(this.state.user.userId)}>delete user</button></div>
-        
+        <div><button onClick={() => this.deleteUser(this.state.user.userId)}>delete user</button></div>
+
       </div>
     )
   }

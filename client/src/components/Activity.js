@@ -6,20 +6,30 @@ import axios from 'axios'
 export default class Activity extends Component {
     state = {
         user: {
-            userName: ''
+            userName: '',
+            userId: '',
+
         },
-          
-users: [],
-            activity: []
-        }
-    
+        activity: [{
+            title: ''
+        }],
+        users: [],
+
+    }
+
     componentDidMount = () => {
-      this.showAllActivites()
+        this.showAllActivites()
     }
     showAllActivites = () => {
         const userId = this.props.match.params.userId
         axios.get(`api/users/${userId}/activities`).then(res => {
-            this.setState({activity: res.data})
+            this.setState({
+                activity: res.data.activity,
+                user: {
+                    userName: res.data.userName,
+                    userId: res.data._id
+                }
+            })
         })
     }
     render() {
@@ -29,8 +39,8 @@ users: [],
                 <div><Link to='/login'>Login Page</Link></div>
                 <div><Link to={`/${this.state.userId}/createActivity`}>Create an Activity</Link></div>
                 <h1>activities:</h1>
-                {/* <div> 
-                {
+                <div>
+                    {/* {
                     this.state.users.map((user) => {
                         return (
                             <Link
@@ -41,17 +51,18 @@ users: [],
                             </Link>
                         )
                     })
-                }
-                 {this.state.activity.map((activity) => {
-                    return (
-                        <Link to={`/users/${this.props.userId}/activity/${activity._id}`}
-                            key={activity._id}
-                            >{activity.title}</Link>
-                    )
-                }
-                )
-                }
-                </div> */}
+                } */}
+                    {/* {this.state.activity.map((activity) => {
+                        return (
+                            <Link
+                                key={activity._id}>
+                                {activity.title}
+                            </Link>
+
+                        )
+                    })
+                    } */}
+                </div>
             </div>
         )
     }

@@ -27,7 +27,7 @@ export default class CreateAccount extends Component {
         }).then((res)=>{
             const usersList = [...this.state.users]
             usersList.unshift(res.data)
-            this.setState({createdUser: res.data})
+            this.setState({createdUser: res.data, redirectToHome: true})
         })
     }
     handleChange = (e) => {
@@ -62,7 +62,7 @@ export default class CreateAccount extends Component {
            type="password"
            value={this.state.user.password}></input>
         </div>
-    <button>Sign Up!</button>
+    <div><button>Sign Up!</button></div>
        </form>
       </div>
     )

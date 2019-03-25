@@ -19,7 +19,7 @@ class App extends Component {
       <Route path='/activity' component={Activity}></Route>
       <Route path='/createAccount' component={CreateAccount}></Route>
       <Route path='/users/:userId' component={UsernamePage}></Route>
-      <Route path='/createActivity' component={CreateActivity}></Route>
+      <Route path='/:userId/createActivity' component={CreateActivity}></Route>
     </Switch>
   </div>
 </Router>

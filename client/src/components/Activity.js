@@ -27,7 +27,7 @@ users: [],
             <div>
                 <div><Link to='/'>Home Page</Link></div>
                 <div><Link to='/login'>Login Page</Link></div>
-                <div><Link to='/createActivity'>Create an Activity</Link></div>
+                <div><Link to={`/${this.state.userId}/createActivity`}>Create an Activity</Link></div>
                 <h1>activities:</h1>
                 {/* <div> 
                 {

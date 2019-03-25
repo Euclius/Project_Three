@@ -39,7 +39,7 @@ User.findById(req.params.userId).then(user => {
 })
 }),
 
-router.delete(`/:userId`, (req, res) => {
+router.delete('/:userId', (req, res) => {
     User.findById(req.params.userId).then(user => {
         user.save()
         .then(user=>{

@@ -4,33 +4,106 @@ import {Redirect, Link} from 'react-router-dom'
 
 export default class CreateActivity extends Component {
     state ={
-        activity:{
-        title:'',
-        description:'',
-        legal:''
+        user: {
+            userName: ''
         },
+        activity:{
+            title: '',
+            description: '',
+            legal: ''
+        },
+        activities: [],
         createdActivty: {},
         redirectToHome: false
     }
 
-    activityCreate = () => {
-        axios.post(`/api/users/:userId/activities`).then(res => {
-            this.setState({activity: res.data})
-        })
+//  handleSubmit = () => {
+//     const {title, description, legal} = this.state
+//      return axios.post(`api/users/${this.state.user._id}/activities`, {
+//     title,
+//     description,
+//    legal, }) 
+// }
+// handleChangeField(key, event) {
+//     this.setState({
+//      [key]: event.target.value,
+//    })
+//   }
+// componentDidMount = () => {
+//     if(this.props.match.params) {
+//         axios.get(`/api/users/${this.props.match.params.userId}`)
+//             .then(res => {
+//                 this.setState({
+//                     activity: res.data.activity,
+//                     user: {
+//                         _id: res.data._id,
+//                         userName: res.data.userName
+//                     }
+//                 })
+//             })
+
+//     }
+// }
+//     activityCreate = () => {
+//         const userId = this.props.match.params.userId
+//         axios.post(`/api/users/${userId}/activities`).then(res => {
+//             const newActivity = [...this.state.activity]
+//             newActivity.unshift(res.data)
+//             this.setState({activity: newActivity})
+//         })
+//     }
+//     handleAlter = (post, e) => {
+//         const newActivity = [...this.state.activity]
+//         const activities = newActivity.map((savedActivity) => {
+//             if (savedActivity._id === post._id) {
+// savedActivity[e.target.name] = e.target.value
+//             }
+//             return savedActivity
+//         })
+//         this.setState({activity: activities})
+//         // this is a different attempt at handleAlter function newActivity[e.target.name] = e.target.value
+//         // this.setState({activity: newActivity})
+//         // this.setState({[key]: e.target.value,})
+//     }
+componentDidMount = () => {
+    if(this.props.match.params) {
+        axios.get(`/api/users/${this.props.match.params.userId}`)
+            .then(res => {
+                this.setState({
+                    activity: res.data.activity,
+                    user: {
+                        _id: res.data._id,
+                        userName: res.data.userName
+                    }
+                })
+            })
+
     }
-    handleAlter = (e) => {
-        const newActivity = {...this.state.activity}
-        newActivity[e.target.name] = e.target.value
-        this.setState({activity: newActivity})
-    }
+}
+activityCreate = () => {
+    const userId = this.props.match.params.userId
+    axios.post(`/api/users/${userId}/activities`, {activity: this.state.activity})
+    .then(res => {
+        console.log(res.data)
+        const activityList = [...this.state.activity]
+        activityList.unshift(res.data)
+        this.setState({redirectToHome: true, createdActivty: res.data})
+    })
+}
+handleAlter = (e) => {
+    const newActivity = {...this.state.activity}
+    newActivity[e.target.name] = e.target.value
+    this.setState({activity: newActivity})
+}
     handleActivityCreate = (e) => {
         e.preventDefault()
         this.activityCreate()
     }
   render() {
       if(this.state.redirectToHome === true) {
-          return (<Redirect to= {`users/:userId/${this.state.createdActivty._id}`}></Redirect>)
+          return (<Redirect to= {`users/${this.state.userId}/activities/${this.state.createdActivty._id}`}></Redirect>)
       }
+   
     return (
       <div>
         <Link to='/'>Return Home</Link>

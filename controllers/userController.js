@@ -39,6 +39,15 @@ User.findById(req.params.userId).then(user => {
 })
 }),
 
+router.delete(`/:userId`, (req, res) => {
+    User.findById(req.params.userId).then(user => {
+        user.save()
+        .then(user=>{
+            res.json(user)
+        })
+    })
+}),
+
 router.delete('/:userId/activities/:activitiesId', (req, res) => {
     User.findById(req.params.userId).then(user => {
        const filterUserActivity = user.activity.filter(activity => activity._id.toString() !== req.params.activityId)
@@ -49,7 +58,7 @@ router.delete('/:userId/activities/:activitiesId', (req, res) => {
            res.json(user, activities)
        })
     })
-})
+}),
 router.patch('/:userId/activities/:activitiesId', (req, res) => {
     User.findById(req.params.userId).then(user => {
         const update = req.body.activity

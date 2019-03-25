@@ -34,6 +34,7 @@ export default class CreateAccount extends Component {
         const newUser = {...this.state.user}
         newUser[e.target.name] = e.target.value
         this.setState({user: newUser})
+
     }
     handleSignUp = (e) => {
         e.preventDefault()

@@ -5,26 +5,22 @@ import axios from 'axios'
 
 export default class Activity extends Component {
     state = {
-        users: {
-            userName: '',
-
+        user: {
+            userName: ''
+        },
+          
+users: [],
             activity: []
         }
-    }
+    
     componentDidMount = () => {
-        if (this.props.match.params) {
-            axios.get(`/api/users/${this.props.match.params.userId}`)
-                .then(res => {
-                    this.setState({
-                        activity: res.data.activity,
-                        user: {
-                            _id: res.data._id,
-                            userName: res.data.userName
-                        }
-                    })
-                })
-
-        }
+      this.showAllActivites()
+    }
+    showAllActivites = () => {
+        const userId = this.props.match.params.userId
+        axios.get(`api/users/${userId}/activities`).then(res => {
+            this.setState({activity: res.data})
+        })
     }
     render() {
         return (
@@ -33,15 +29,29 @@ export default class Activity extends Component {
                 <div><Link to='/login'>Login Page</Link></div>
                 <div><Link to='/createActivity'>Create an Activity</Link></div>
                 <h1>activities:</h1>
-                <div>{this.state.users.activity.map(activity => {
+                {/* <div> 
+                {
+                    this.state.users.map((user) => {
+                        return (
+                            <Link
+                                to={`/user/${user._id}`}
+                                key={user._id}
+                            >
+                            {user.userName}
+                            </Link>
+                        )
+                    })
+                }
+                 {this.state.activity.map((activity) => {
                     return (
-                        <Link to={`/activity/${activity._id}`}
+                        <Link to={`/users/${this.props.userId}/activity/${activity._id}`}
                             key={activity._id}
-                            activity={activity}>{activity.title}</Link>
+                            >{activity.title}</Link>
                     )
                 }
                 )
-                }</div>
+                }
+                </div> */}
             </div>
         )
     }

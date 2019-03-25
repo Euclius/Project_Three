@@ -19,10 +19,10 @@ export default class Login extends Component {
     return (
       <div>
           <h1>Pick which username you are</h1>
-         <div> {this.state.users.map((user) => {
+         <ul> {this.state.users.map((user) => {
               return (<Link to={`/users/${user._id}`} 
-              key={user._id}>{user.userName}</Link>)
-          })}</div>
+              key={user._id}> {user.userName}</Link>)
+          })}</ul>
           
         <div><Link to='/createAccount'>Create an account</Link></div>
         <div><Link to='/'> Return Home</Link></div>

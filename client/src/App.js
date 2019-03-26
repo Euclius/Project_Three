@@ -8,6 +8,7 @@ import CreateAccount from './components/CreateAccount.js';
 import CreateActivity from './components/CreateActivity.js';
 import ActivityShow from './components/ActivityShow.js'
 import EditUser from './components/EditUser.js';
+import EditActivity from './components/EditActivity.js';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
       <Route path='/:userId/createActivity' component={CreateActivity}></Route>
       <Route path='/:userId/:activityId/activityShow' component={ActivityShow}></Route>
       <Route path='/:userId/edit' component={EditUser}></Route>
+      <Route path='/:userId/activities/:activityId' component={EditActivity}></Route>
     </Switch>
   </div>
 </Router>

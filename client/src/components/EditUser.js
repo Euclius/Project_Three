@@ -25,7 +25,10 @@ export default class EditUser extends Component {
     editAccount = () => {
         axios.get(`/api/users/${this.props.match.params.userId}`)
             .then((res) => {
-                this.setState({ redirectToHome: true, userEdited: true })
+                this.setState({ 
+                    redirectToHome: true, 
+                    userEdited: true 
+                })
             }).catch((err) => {
                 console.log('error with editing user', err)
             })

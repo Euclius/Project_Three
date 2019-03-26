@@ -4,6 +4,10 @@ import axios from 'axios'
 
 export default class ActivityShow extends Component{
     state = {
+        user: {
+            userId: '',
+            user: '',
+        },
         activity: []
     }
     componentDidMount = () => {
@@ -26,7 +30,7 @@ export default class ActivityShow extends Component{
         <div>
 <div><Link to= "/">Return Home</Link></div>
 <div><Link to= "/activity">Activity Page</Link></div>
-<div><Link to= "/activity/edit">Edit Activity</Link></div>
+<div><Link to= {`/${this.state.userId}/activity/${this.state.activityId}/edit`}>Edit Activity</Link></div>
 <div>
 
 </div>

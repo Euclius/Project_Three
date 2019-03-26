@@ -12,14 +12,6 @@ export default class CreateAccount extends Component {
         createdUser: {},
         redirectToHome: false,
     }
-    // componentDidMount = () => {
-    //     this.showAllUsers()
-    // }
-    // showAllUsers = () => {
-    //     axios.get('/api/users').then(res => {
-    //         this.setState({users: res.data})
-    //     })
-    // } wrong, remove this later. here now so I know what not to do; and i want to use this to show the users on login page
 
     createAccount = () => {
         axios.post('/api/users', {

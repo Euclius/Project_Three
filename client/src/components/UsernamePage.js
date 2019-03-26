@@ -9,7 +9,7 @@ export default class Username extends Component {
       userName: '',
     },
     activity: []
-    
+
   }
   componentDidMount = () => {
     if (this.props.match.params) {
@@ -38,42 +38,25 @@ export default class Username extends Component {
     console.log(this.state.user)
     return (
       <div>
-        <h1>Activities from 
-          <Link to={`/users/${this.state.user.userId}`} key={this.state.user.userId}>{this.state.user.userName}</Link>
-
+        <h1>Activities from
+          <Link to={`/users/${this.state.user.userId}`} key={this.state.user.userId}>{this.state.user.userName}
+          </Link>
         </h1>
-
-
-
-
-        {/* <div>{this.state.activity.description}</div> */}
-
-
-
-
-        {/* <div> {this.state.activity.map(activity => {
-                    return (
-                        <Link
-                            key={activity._id}>
-                            {activity.title}
-                            </Link>
-                            {activity.description}
-                   )})}</div> */}
-
-
         <div>{this.state.activity.map((activity) => {
           return (
             <Link to={`/${this.state.user.userId}/${activity._id}/activityShow`}
               key={activity._id}>
               {activity.title}
             </Link>
-
           )
-        })
+        }
+        )
         }
         </div>
         <div><Link to='/'>Home Page</Link></div>
+       
         <div><Link to={`/${this.state.user.userId}/createActivity`}>Create an Activity</Link></div>
+        <div><Link to={`/${this.state.user.userId}/edit`}>Edit User</Link></div>
         <div><button onClick={() => this.deleteUser(this.state.user.userId)}>delete user</button></div>
 
       </div>

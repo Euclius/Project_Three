@@ -10,8 +10,6 @@ export default class Activity extends Component {
             userId: '',
         },
       activity: [] 
-        
-
     }
 
     componentDidMount = () => {
@@ -19,7 +17,8 @@ export default class Activity extends Component {
     }
     showAllActivites = () => {
         const userId = this.props.match.params.userId
-        axios.get(`api/users/${userId}/activities`).then(res => {
+        axios.get(`/api/users/${userId}`).then(res => {
+            console.log(res.data)
             this.setState({
                 user: {
                     userName: res.data.userName,
@@ -31,7 +30,7 @@ export default class Activity extends Component {
         })
     }
     render() {
-        console.log(this.state.activity, this.state.user)
+        // console.log(this.state.activity, this.state.user)
         return (
             <div>
                 <div><Link to='/'>Home Page</Link></div>
@@ -42,7 +41,7 @@ export default class Activity extends Component {
                    
                     {this.state.activity.map((activity) => {
                         return (
-                            <Link
+                            <Link to={`/${this.state.user.userId}/${activity._id}/activityShow`}
                                 key={activity._id}>
                                 {activity.title}
                                 

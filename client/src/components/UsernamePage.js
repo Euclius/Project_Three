@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import styled from 'styled-components'
+
+const Header = styled.h1`
+color:blueviolet;
+font-size: 23px;
+`
 
 export default class Username extends Component {
   state = {
@@ -38,10 +44,10 @@ export default class Username extends Component {
     console.log(this.state.user)
     return (
       <div>
-        <h1>Activities from
+       <Header> <h1>Activities from
           <Link to={`/users/${this.state.user.userId}`} key={this.state.user.userId}>{this.state.user.userName}
           </Link>
-        </h1>
+        </h1></Header>
         <div>{this.state.activity.map((activity) => {
           return (
             <Link to={`/${this.state.user.userId}/${activity._id}/activityShow`}

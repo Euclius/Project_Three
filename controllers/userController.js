@@ -2,7 +2,7 @@ const express = require('express')
 const User = require('../models/User.js')
 const Activity = require('../models/Activity.js')
 const router = express.Router()
-
+// home/ index
 router.get('/', (req, res) => {
     User.find().then(users => {
         res.json(users)
@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     }).catch((err) =>
     console.log('error from creating new user route', err))
 }),
-
+// user show
 router.get('/:userId', (req, res) => {
     User.findById(req.params.userId).then(user =>{
         user.activity = user.activity.reverse()
@@ -42,9 +42,18 @@ res.redirect(`${req.params.userId}`)
     })
 })
 
+// delete user
+router.delete('/:userId', (req, res) => {
+    User.findByIdAndRemove(req.params.userId).then(user => {
+        user.save()
+        res.json('200 status. Deleted.')
+    })
+}),
+// new activity
 router.post('/:userId/activities', (req, res) => {
 User.findById(req.params.userId).then(user => {
-    const newActivity = new Activity({})
+    const newActivity = new Activity(req.body.activity)
+    console.log(req.body.activity)
     user.activity.push(newActivity)
     user.save()
     .then((user) => {
@@ -52,15 +61,15 @@ User.findById(req.params.userId).then(user => {
     })
 })
 }),
+// edit activity
+router.get('/:userId/activities/:activityId/edit', (req, res) => {
+Activity.findById(req.params.activityId).then(activity => {
+    res.json(activity)
+})
+})
 
-router.delete('/:userId', (req, res) => {
-    User.findByIdAndRemove(req.params.userId).then(user => {
-        user.save()
-        res.json('200 status. Deleted.')
-    })
-}),
-
-router.delete('/:userId/activities/:activitiesId', (req, res) => {
+// delete activity
+router.delete('/:userId/activities/:activityId', (req, res) => {
     User.findById(req.params.userId).then(user => {
        const filterUserActivity = user.activity.filter(activity => activity._id.toString() !== req.params.activityId)
        user.activity = filterUserActivity
@@ -71,6 +80,7 @@ router.delete('/:userId/activities/:activitiesId', (req, res) => {
        })
     })
 }),
+//update activity
 router.patch('/:userId/activities/:activitiesId', (req, res) => {
     User.findById(req.params.userId).then(user => {
         const update = req.body.activity

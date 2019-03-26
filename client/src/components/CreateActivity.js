@@ -14,7 +14,7 @@ export default class CreateActivity extends Component {
             legal: ''
         },
         activities: [],
-        createdActivty: {},
+        // createdActivty: {},
         redirectToHome: false
     }
 
@@ -23,7 +23,7 @@ export default class CreateActivity extends Component {
             axios.get(`/api/users/${this.props.match.params.userId}`)
                 .then(res => {
                     this.setState({
-                        activity: res.data.activity,
+                        activities: res.data.activity,
                         user: {
                             _id: res.data._id,
                             userName: res.data.userName
@@ -39,9 +39,9 @@ export default class CreateActivity extends Component {
             activity: this.state.activity
         }).then(res => {
             console.log(res.data)
-            const activityList = [...this.state.activity]
+            const activityList = [...this.state.activities]
             activityList.unshift(res.data)
-            this.setState({redirectToHome: true, createdActivty: res.data })
+            this.setState({redirectToHome: true, activity: res.data })
         }).catch((err) => {
             console.log('error with activity Create', err)
         })
@@ -50,7 +50,7 @@ export default class CreateActivity extends Component {
         const newActivity = { ...this.state.activity }
         newActivity[e.target.name] = e.target.value
         this.setState({ activity: newActivity })
-        console.log("showing the handleAlter ", e)
+        // console.log("showing the handleAlter ", e)
     }
     handleActivityCreate = (e) => {
         e.preventDefault()
@@ -58,7 +58,7 @@ export default class CreateActivity extends Component {
     }
     render() {
         if (this.state.redirectToHome === true) {
-            return (<Redirect to={`/users/${this.state.user.userId}/activities/${this.state.createdActivty._id}`}></Redirect>)
+            return (<Redirect to={`/users/${this.state.user._id}/activities/${this.state.activity._id}`}></Redirect>)
         }
 
         return (

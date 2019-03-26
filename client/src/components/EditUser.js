@@ -44,8 +44,10 @@ export default class EditUser extends Component {
     }
 
     render() { 
-        if (this.state.redirectToHome === true) {
-            return (<Redirect to ={`/users/${this.state.userEdited}`}></Redirect>)
+        if (this.state.redirectToHome === true && this.state.userEdited === true )
+        
+        {
+            return (<Redirect to ={`/users/${this.state.user.userId}`}></Redirect>)
         }
         return (
             <div>

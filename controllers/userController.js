@@ -62,7 +62,7 @@ User.findById(req.params.userId).then(user => {
 })
 }),
 // edit activity
-router.get('/:userId/activities/:activityId/edit', (req, res) => {
+router.get('/:userId/activity/:activityId/edit', (req, res) => {
 Activity.findById(req.params.activityId).then(activity => {
     res.json(activity)
 })

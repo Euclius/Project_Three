@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import styled from 'styled-components'
 
+const UL = styled.ul`
+padding: 2px;
+border-radius: 2px;
+border-color: black;
+`
 
 export default class Activity extends Component {
     state = {
@@ -37,20 +43,21 @@ export default class Activity extends Component {
                 <div><Link to='/login'>Login Page</Link></div>
                 <div><Link to={`/${this.state.userId}/createActivity`}>Create an Activity</Link></div>
                 <h1>activities:</h1>
+
+                <UL>
                 <div>
-                   
                     {this.state.activity.map((activity) => {
                         return (
                             <Link to={`/${this.state.user.userId}/${activity._id}/activityShow`}
                                 key={activity._id}>
-                                {activity.title}
-                                
+                                {activity.title}    
                             </Link>
-
                         )
                     })
                     }
                 </div>
+                </UL>
+
             </div>
         )
     }

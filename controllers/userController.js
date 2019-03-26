@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     }).catch((err) =>
     console.log('error from root/index usercontroller', err))
 }),
-
+// user create
 router.post('/', (req, res) => {
     const newUser = new User(req.body.user)
     newUser.save()
@@ -27,6 +27,20 @@ router.get('/:userId', (req, res) => {
     .catch((err)=>
     console.log('error from usercontroller for show user and activities', err))
 }),
+//user edit
+router.get('/:userId/edit', (req, res)=> {
+    User.findById(req.params.userId).then(user =>{
+        res.json(user)
+    }).catch((err) => {
+        console.log('error from user edit', err)
+    })
+})
+//user update
+router.put('/:userId', (req, res) => {
+    User.findByIdAndUpdate(req.params.userId, req.body, {new: true}).then(() => {
+res.redirect(`${req.params.userId}`)
+    })
+})
 
 router.post('/:userId/activities', (req, res) => {
 User.findById(req.params.userId).then(user => {
@@ -67,7 +81,9 @@ router.patch('/:userId/activities/:activitiesId', (req, res) => {
         if (update.description) {
             activity.description = update.description
         }
-
+        if (update.legal) {
+            activity.legal = update.legal
+        }
         user.save().then((user) => {
             user.activity = user.activity.reverse()
             res.json(user)

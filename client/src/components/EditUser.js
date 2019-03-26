@@ -8,7 +8,8 @@ export default class EditUser extends Component {
             userName: '',
             password: '',
         },
-        redirectToHome: false
+        redirectToHome: false,
+        userEdited: false
     }
     componentDidMount = () => {
         axios.get(`/api/users/${this.props.match.params.userId}`)
@@ -24,7 +25,7 @@ export default class EditUser extends Component {
     editAccount = () => {
         axios.get(`/api/users/${this.props.match.params.userId}`)
             .then((res) => {
-                this.setState({ redirectToHome: true, user: res.data })
+                this.setState({ redirectToHome: true, userEdited: true })
             }).catch((err) => {
                 console.log('error with editing user', err)
             })
@@ -41,7 +42,7 @@ export default class EditUser extends Component {
 
     render() { 
         if (this.state.redirectToHome === true) {
-            return (<Redirect to ={`/users/${this.state.user.userId}`}></Redirect>)
+            return (<Redirect to ={`/users/${this.state.userEdited}`}></Redirect>)
         }
         return (
             <div>

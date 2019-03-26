@@ -8,12 +8,9 @@ export default class Activity extends Component {
         user: {
             userName: '',
             userId: '',
-
         },
-        activity: [{
-            title: ''
-        }],
-        users: [],
+      activity: [] 
+        
 
     }
 
@@ -24,15 +21,17 @@ export default class Activity extends Component {
         const userId = this.props.match.params.userId
         axios.get(`api/users/${userId}/activities`).then(res => {
             this.setState({
-                activity: res.data.activity,
                 user: {
                     userName: res.data.userName,
-                    userId: res.data._id
-                }
+                    userId: res.data._id,
+                
+                },
+                activity: res.data.activity,
             })
         })
     }
     render() {
+        console.log(this.state.activity, this.state.user)
         return (
             <div>
                 <div><Link to='/'>Home Page</Link></div>
@@ -40,28 +39,18 @@ export default class Activity extends Component {
                 <div><Link to={`/${this.state.userId}/createActivity`}>Create an Activity</Link></div>
                 <h1>activities:</h1>
                 <div>
-                    {/* {
-                    this.state.users.map((user) => {
-                        return (
-                            <Link
-                                to={`/user/${user._id}`}
-                                key={user._id}
-                            >
-                            {user.userName}
-                            </Link>
-                        )
-                    })
-                } */}
-                    {/* {this.state.activity.map((activity) => {
+                   
+                    {this.state.activity.map((activity) => {
                         return (
                             <Link
                                 key={activity._id}>
                                 {activity.title}
+                                
                             </Link>
 
                         )
                     })
-                    } */}
+                    }
                 </div>
             </div>
         )

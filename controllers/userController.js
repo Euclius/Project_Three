@@ -29,9 +29,11 @@ router.get('/:userId', (req, res) => {
 }),
 //user edit
 router.get('/:userId/edit', (req, res)=> {
-    User.findById(req.params.userId).then(user =>{
-        res.json(user)
-    }).catch((err) => {
+    User.findById(req.params.userId, {
+        userName: req.body.email,
+        password: req.body.password
+    })
+    .catch((err) => {
         console.log('error from user edit', err)
     })
 })
@@ -61,10 +63,24 @@ User.findById(req.params.userId).then(user => {
     })
 })
 }),
+
+// show activity: 
+router.get('/:userId/activity/:activityId/', (req, res) => {
+    User.findById(req.params.userId).then(()=>{
+
+    
+    Activity.findById(req.params.activityId).then((activity) => {
+res.json(activity, {activity, userId: req.params.userId})
+    })
+})
+})
+
 // edit activity
-router.get('/:userId/activity/:activityId/edit', (req, res) => {
+router.get('/:userId/activities/:activityId/edit', (req, res) => {
+User.findById(req.params.userId).then(()=> {
 Activity.findById(req.params.activityId).then(activity => {
-    res.json(activity)
+    res.json(activity, {activity, userId: req.params.userId})
+})
 })
 })
 
@@ -85,6 +101,7 @@ router.patch('/:userId/activities/:activitiesId', (req, res) => {
     User.findById(req.params.userId).then(user => {
         const update = req.body.activity
         const activity = user.activity.id(req.params.activityId)
+        Activity.findByIdAndUpdate(id, {$set: {new: true}})
         if (update.title) {
             activity.title = update.title
         }

@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 
 export default class EditActivity extends Component {
 
 state={
-    activity: {},
+    activity: [],
     redirectToActivityPage: false,
     activityEdited: false
 }    
 
 componentDidMount = () => {
-    axios.get(`/api/users/${this.props.match.params.userId}/activities/${this.props.match.params.activityId}`)
+    axios.get(`/api/users/${this.props.match.params.userId}/activities/${this.props.match.params.activityId}/edit`)
     .then (res => {
         this.setState({
             activity: res.data.activity
@@ -19,7 +20,8 @@ componentDidMount = () => {
 }
 
 activityEdit = () => {
-    axios.get(`/api/users/${this.props.match.params.userId}/activities/${this.props.match.params.activityId}`)
+
+    axios.put(`/api/users/${this.props.match.params.userId}/activities/${this.props.match.params.activityId}`)
     .then (res => {
         this.setState({
             activity: res.data.activity, 
@@ -44,6 +46,10 @@ handleActivityEdit = (event) => {
 }
 
     render() {
+        if (this.state.redirectToActivityPage === true 
+            && this.state.activityEdited === true) {
+                return (<Redirect to= {`/users/${this.state.userId}/activitiy/${this.state.activityEdited_id}`}></Redirect>)
+            }
         return (
             <div>
                 <form onSubmit={this.handleActivityEdit}>
@@ -52,21 +58,21 @@ handleActivityEdit = (event) => {
                         <input onChange={this.handleAlter}
                             name="title"
                             type="text"
-                            value={this.state.activity.title}></input>
+                            value={this.state.activity.title || ''}/>
                     </div>
                     <div>
-                        <label htmlFor="description">description: </label>
+                        <label htmlFor="description">Description: </label>
                         <input onChange={this.handleAlter}
                             name="description"
                             type="text"
-                            value={this.state.activity.description}></input>
+                            value={this.state.activity.description || ''}/>
                     </div>
                     <div>
                         <label htmlFor="legal">Legal:</label>
                         <input onChange={this.handleAlter}
                             name="legal"
                             type="text"
-                            value={this.state.activity.legal}></input>
+                            value={this.state.activity.legal || ''}/>
                     </div>
                     <button>Post Activity!</button>
                 </form>

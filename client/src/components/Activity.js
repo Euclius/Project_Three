@@ -7,6 +7,7 @@ const UL = styled.ul`
 padding: 2px;
 border-radius: 2px;
 border-color: black;
+color: green;
 `
 
 export default class Activity extends Component {
@@ -45,17 +46,18 @@ export default class Activity extends Component {
                 <h1>activities:</h1>
 
                 <UL>
-                <div>
+                <ul>
                     {this.state.activity.map((activity) => {
                         return (
-                            <Link to={`/${this.state.user.userId}/${activity._id}/activityShow`}
+                            <Link to={`/${this.state.user.userId}/activity/${activity._id}`}
                                 key={activity._id}>
-                                {activity.title}    
+                                {activity.title}
+                                 
                             </Link>
                         )
                     })
                     }
-                </div>
+                </ul>
                 </UL>
 
             </div>

@@ -7,8 +7,13 @@ export default class ActivityShow extends Component {
         user: {
             userId: '',
             userName: '',
+       
         },
-        activity: []
+         activity: [{
+             title: '',
+             description: '',
+             legal: ''
+         }]
     }
     componentDidMount = () => {
         this.showSpecificActivity()
@@ -16,37 +21,53 @@ export default class ActivityShow extends Component {
     showSpecificActivity = () => {
         const userId = this.props.match.params.userId
         const activityId = this.props.match.params.activityId
-        axios.get(`api/users/${userId}/activity/${activityId}`)
+        axios.get(`/api/users/${userId}/activity/${activityId}`)
             .then(res => {
                 this.setState({
-                    activity: res.data.activity,
+                    activity: {
+                        title: res.data.title,
+                        description: res.data.description,
+                        legal: res.data.legal
+                    },
                     user: {
-                        userId: res.data._id,
+                        userId: res.data.userId,
                         userName: res.data.userName
                         
-
                     }
                 })
             })
+    }
+    deleteActivity = () => {
+        const userId = this.props.match.params.userId
+        const activityId = this.props.match.params.activityId
+        axios.delete(`/api/users/${userId}/activities/${activityId}`)
+        .then(() => {
+            this.props.history.goBack()
+        })
     }
     render() {
 
         return (
 
             <div>
+
+
+
                 <div><Link to="/">Return Home</Link></div>
-                <div><Link to={`/${this.state.user.userId}/${this.state.activityId}/activity`}>Activity Page</Link></div>
-                <div><Link to={`/${this.state.user.userId}/activity/${this.state.activityId}/edit`}>Edit Activity</Link></div>
+                <div><Link to={`/${this.state.user.userId}/activity/${this.state.activityId}`}>Activity Page</Link></div>
+                <div><Link to={`/${this.state.user.userId}/activities/${this.state.activityId}/edit`}>Edit Activity</Link></div>
+                <button onClick={()=> this.deleteActivity(this.state.activity)}>Delete Activity</button>
                 <div>
-{/* // {this.state.activity.map(activity => { */}
-{/*     return (
-      key={activityId}
-      activity={activity}
-      {activity.title}
-      {activity.description}
-       {activity.legal}
-  )
- })} */}
+                    
+                    {this.state.activity.map((activity) => {
+                     return (
+                         <div key={activity}>
+                         {activity.title}
+                         {activity.description}
+                         {activity.legal}
+                         </div>
+                     )   
+                    })}
  
                 </div>
 

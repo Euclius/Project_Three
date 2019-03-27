@@ -20,9 +20,7 @@ export default class HomePage extends Component {
         },
         activity: []
     }
-    componentDidMount = () => {
-
-    }
+   
 
     render() {
         return (
@@ -30,7 +28,7 @@ export default class HomePage extends Component {
                 <Header><h1>Activities around Atlanta</h1></Header>
                 <Path>
                     <div> <Link to="/login">Login</Link></div>
-                    <div>  <Link to={`/${this.state.user.userId}/${this.state.activity._id}/activity`}>Activities</Link></div>
+                    {/* <div>  <Link to='/activity'>Activities</Link></div> */}
                 </Path>
                 <h4>Bored in Atlanta? Want some ideas of what you can do on the cheap? Click the Activities link to gather some ideas</h4>
             </div>

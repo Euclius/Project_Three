@@ -41,16 +41,16 @@ export default class Username extends Component {
   }
 
   render() {
-    console.log(this.state.user)
+    // console.log(this.state.user)
     return (
       <div>
-       <Header> <h1>Activities from
+       <Header> <h1>Activities from: 
           <Link to={`/users/${this.state.user.userId}`} key={this.state.user.userId}>{this.state.user.userName}
           </Link>
         </h1></Header>
         <div>{this.state.activity.map((activity) => {
           return (
-            <Link to={`/${this.state.user.userId}/${activity._id}/activityShow`}
+            <Link to={`/${this.state.user.userId}/activityShow/${activity._id}`}
               key={activity._id}>
               {activity.title}
             </Link>
@@ -60,7 +60,6 @@ export default class Username extends Component {
         }
         </div>
         <div><Link to='/'>Home Page</Link></div>
-       
         <div><Link to={`/${this.state.user.userId}/createActivity`}>Create an Activity</Link></div>
         <div><Link to={`/${this.state.user.userId}/edit`}>Edit User</Link></div>
         <div><button onClick={() => this.deleteUser(this.state.user.userId)}>delete user</button></div>

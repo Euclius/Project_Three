@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 export default class EditUser extends Component {
     state = {
         user: {
             userName: '',
-            password: '',
         },
         redirectToHome: false,
         userEdited: false
@@ -25,46 +24,41 @@ export default class EditUser extends Component {
     editAccount = () => {
         axios.get(`/api/users/${this.props.match.params.userId}`)
             .then((res) => {
-                this.setState({ 
-                    redirectToHome: true, 
-                    userEdited: true 
+                this.setState({
+                    redirectToHome: true,
+                    userEdited: res.data
                 })
             }).catch((err) => {
                 console.log('error with editing user', err)
             })
     }
     handleChange = (e) => {
-        const editUser = {...this.state.user}
-        editUser[e.target.name] =e.target.value
-        this.setState({user: editUser})
+        const editUser = { ...this.state.user }
+        editUser[e.target.name] = e.target.value
+        this.setState({ user: editUser })
+        console.log("showing handleChange", e)
     }
     handleEditAccount = (e) => {
         e.preventDefault()
         this.editAccount()
     }
 
-    render() { 
-        if (this.state.redirectToHome === true && this.state.userEdited === true )
-        
-        {
-            return (<Redirect to ={`/users/${this.state.user.userId}`}></Redirect>)
+    render() {
+        if (this.state.redirectToHome === true &&
+            this.state.userEdited === true) {
+            return (<Redirect to={`/users/${this.state.user.userId}`}></Redirect>)
         }
         return (
             <div>
-                <form onSubmit={this.editAccount}>
+                <form onSubmit={this.HandleEditAccount}>
                     <div>
                         <label htmlFor="userName">Username: </label>
-                        <input onChange={this.handleChange}
+                        <input
+                            onChange={this.handleChange}
                             name="userName"
                             type="text"
-                            value={this.state.user.userName}></input>
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password: </label>
-                        <input onChange={this.handleChange}
-                            name="password"
-                            type="password"
-                            value={this.state.user.password}></input>
+                            value={this.state.user.userName}
+                        />
                     </div>
                     <div><button>Update!</button></div>
                 </form>

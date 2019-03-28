@@ -32,7 +32,6 @@ https://trello.com/c/4gjUt3QW/2-wireframe-with-photos
 4. react-scripts
 5. react
 6. react-dom
-## Resources
 
 # Shoutouts
 1. Chad

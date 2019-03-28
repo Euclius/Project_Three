@@ -14,7 +14,6 @@ export default class CreateActivity extends Component {
             legal: ''
         },
         activities: [],
-        // createdActivty: {},
         redirectToHome: false
     }
 
@@ -35,7 +34,8 @@ export default class CreateActivity extends Component {
     }
     activityCreate = () => {
         const userId = this.props.match.params.userId
-        axios.post(`/api/users/${userId}/activities`, {
+        const activityId = this.props.match.params.userId
+        axios.post(`/api/users/${userId}/activities/${activityId}`, {
             activity: this.state.activity
         }).then(res => {
             console.log(res.data)
@@ -58,7 +58,7 @@ export default class CreateActivity extends Component {
     }
     render() {
         if (this.state.redirectToHome === true) {
-            return (<Redirect to={`/users/${this.state.user._id}/activities/${this.state.activity._id}`}></Redirect>)
+            return (<Redirect to={`/users/${this.state.user._id}`}></Redirect>)
         }
 
         return (

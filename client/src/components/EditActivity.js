@@ -5,26 +5,31 @@ import {Redirect} from 'react-router-dom'
 export default class EditActivity extends Component {
 
 state={
-    activity: [],
+    activity: [{
+        title: '',
+        description: '',
+        legal: ''
+    }],
     redirectToActivityPage: false,
     activityEdited: false
 }    
 
 componentDidMount = () => {
-    axios.get(`/api/users/${this.props.match.params.userId}/activities/${this.props.match.params.activityId}/edit`)
+    axios.get(`/api/users/${this.props.match.params.userId}/activity/${this.props.match.params.activityId}`)
     .then (res => {
         this.setState({
-            activity: res.data.activity
+            activity: res.data
         })
     })
 }
 
 activityEdit = () => {
-
-    axios.put(`/api/users/${this.props.match.params.userId}/activities/${this.props.match.params.activityId}`)
+const userId = this.props.match.params.userId
+const activityId = this.props.match.params.activityId
+    axios.put(`/api/users/${userId}/activities/${activityId}`,this.state.activity)
     .then (res => {
         this.setState({
-            activity: res.data.activity, 
+            activity: res.data, 
             activityEdited: true, 
             redirectToActivityPage: true
         }).catch((err) => {
@@ -46,6 +51,7 @@ handleActivityEdit = (event) => {
 }
 
     render() {
+        
         if (this.state.redirectToActivityPage === true 
             && this.state.activityEdited === true) {
                 return (<Redirect to= {`/users/${this.state.userId}/activitiy/${this.state.activityEdited_id}`}></Redirect>)

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const Header = styled.h1`
 color: blueviolet;
 font-size: 23px;
+display: flex;
 `
 
 const Path = styled.div`

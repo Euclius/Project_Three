@@ -12,6 +12,14 @@ color:darkblue;
 font-size: 23px;
 `
 
+const UL = styled.ul`
+color: green;
+padding: 5em;
+font-size: 18px;
+vertical-align: text-top;
+text-decoration:none;
+`
+
 export default class Username extends Component {
   state = {
     user: {
@@ -53,23 +61,23 @@ export default class Username extends Component {
         <Button>
         <button><Link to='/'>Home Page</Link></button>
         <button><Link to={`/${this.state.user.userId}/createActivity`}>Create an Activity</Link></button>
-        <button onClick={() => this.deleteUser(this.state.user.userId)}>delete user</button>
+        <button onClick={() => this.deleteUser(this.state.user.userId)}>Delete user</button>
         </Button>
        <Header> <h1>Activities from: 
-          <Link to={`/users/${this.state.user.userId}`} key={this.state.user.userId}>{this.state.user.userName}
+          <Link to={`/users/${this.state.user.userId}`} key={this.state.user.userId}><div>{this.state.user.userName}</div>
           </Link>
         </h1></Header>
-        <div>{this.state.activity.map((activity) => {
+        <UL><div>{this.state.activity.map((activity) => {
           return (
             <Link to={`/${this.state.user.userId}/activityShow/${activity._id}`}
               key={activity._id}>
-              {activity.title}
+             <div> {activity.title}</div>
             </Link>
           )
         }
         )
         }
-        </div>
+        </div></UL>
 
       </div>
       

@@ -10,6 +10,9 @@ https://safe-tundra-11511.herokuapp.com/
 ## Trello Board
 https://trello.com/b/JV4RM7q3/project-three
 
+## WireFrame
+https://trello.com/c/4gjUt3QW/2-wireframe-with-photos
+
 ## Dependencies on the Backend
 1. concurrently
 2. dotenv

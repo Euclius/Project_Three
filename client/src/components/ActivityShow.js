@@ -10,6 +10,9 @@ import styled from 'styled-components'
 const Button = styled.button`
 background-color: green;
 `
+const Title =styled.p`
+font-size:28px;
+`
 
 const Font = styled.div`
 color: darkblue;
@@ -64,9 +67,9 @@ export default class ActivityShow extends Component {
                 <div>
                     <Font>
                     <div key={this.state.activity._id}>
-                        <div> title: {this.state.activity.title}</div>
-                        <div> description: {this.state.activity.description}</div>
-                        <div>legal: {this.state.activity.legal}</div>
+                         <Title>Title:</Title><div>{this.state.activity.title}</div>
+                        <Title>Description:</Title> <div> {this.state.activity.description}</div>
+                         <Title>Legal:</Title> <div>{this.state.activity.legal}</div>
                     </div>
                     </Font>
                 </div>

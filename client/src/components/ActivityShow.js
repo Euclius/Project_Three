@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
-// const StyledView = styled.View`
-// background-color: papayawhip;
-// `
+
 
 const Button = styled.button`
 background-color: green;
@@ -74,7 +72,7 @@ export default class ActivityShow extends Component {
                     </Font>
                 </div>
             </div>
-            // </StyledView>
+           
         )
     }
 }

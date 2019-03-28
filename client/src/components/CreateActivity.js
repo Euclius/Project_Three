@@ -3,9 +3,6 @@ import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-// const StyledView = styled.View`
-// background-color: papayawhip;
-// `
 
 const Params = styled.h1`
 color: darkblue;
@@ -79,7 +76,7 @@ export default class CreateActivity extends Component {
         }
 
         return (
-            // <StyledView>
+ 
             <div>
                 <Button>
                 <button><Link to='/'>Return Home</Link></button>
@@ -109,7 +106,7 @@ export default class CreateActivity extends Component {
                     <button>Post Activity!</button>
                 </form>
             </div>
-            // </StyledView>
+           
         )
     }
 }

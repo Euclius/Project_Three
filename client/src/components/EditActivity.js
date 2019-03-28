@@ -48,7 +48,7 @@ const payload = this.state.activity
         this.setState({
             activity: res.data, 
             activityEdited: true, 
-            // redirectToActivityPage: true
+            
         })
         this.props.history.goBack()
         })
@@ -74,7 +74,7 @@ handleActivityEdit = (event) => {
                 return (<Redirect to= {`/users/${this.state.userId}/activitiy/${this.state.activityEdited_id}`}></Redirect>)
             }
         return (
-            // <StyledView>
+           
             <div>
                 <form onSubmit={this.handleActivityEdit}>
                     <div>
@@ -101,7 +101,7 @@ handleActivityEdit = (event) => {
                     <Button><button>Post Activity!</button></Button>
                 </form>
             </div>
-            // </StyledView>
+          
         )
     }
 }

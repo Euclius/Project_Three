@@ -51,7 +51,7 @@ export default class CreateAccount extends Component {
          return (<Redirect to= {`/users/${this.state.createdUser._id}`}></Redirect>)
      }
     return (
-        // <StyledView>
+        
       <div>
           <Button><button><Link to='/'>Return Home</Link></button></Button>
           <form onSubmit={this.handleSignUp}>
@@ -72,7 +72,7 @@ export default class CreateAccount extends Component {
     <div><Button><button>Sign Up!</button></Button></div>
        </form>
       </div>
-    //   </StyledView>
+    
     )
   }
 }

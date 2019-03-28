@@ -55,7 +55,7 @@ export default class Username extends Component {
   render() {
 
     return (
-      // <StyledView>
+      
       
       <div>
         <Button>

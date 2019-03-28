@@ -100,5 +100,5 @@ User.findByIdAndUpdate(userId).then((user) => {
 })
 })
 
-//where it says "user.activity", that is referencing the schemas
+
 module.exports = router

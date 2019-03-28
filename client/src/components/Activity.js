@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
-// const StyledView = styled.view`
-// background-color: papayawhip;
-// `
+
 
 const UL = styled.ul`
 padding: 2px;
@@ -43,7 +41,7 @@ export default class Activity extends Component {
     render() {
         
         return (
-            // <StyledView>
+           
             <div>
                 <div><Link to='/'>Home Page</Link></div>
                 <div><Link to='/login'>Login Page</Link></div>
@@ -66,7 +64,7 @@ export default class Activity extends Component {
                 </UL>
 
             </div>
-            // {/* </StyledView> */}
+          
         )
     }
 }

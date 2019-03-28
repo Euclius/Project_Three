@@ -6,7 +6,6 @@ import styled from 'styled-components'
 const Button = styled.button`
 background-color:green;
 `
-
 const Header = styled.h1`
 color:darkblue;
 font-size: 23px;
@@ -18,7 +17,6 @@ font-size: 18px;
 vertical-align: text-top;
 text-decoration:none;
 `
-
 export default class Login extends Component {
   state = {
     users: []
@@ -47,8 +45,6 @@ export default class Login extends Component {
               key={user._id}> <div>{user.userName}</div> </Link>)
           })}</ul>
         </UL>
-
-
       </div>
     )
   }

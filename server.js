@@ -20,5 +20,5 @@ app.get('/*', (req, res) => {
 
 const PORT = process.env.PORT || 1000
 app.listen(PORT, () =>{
-    console.log(`Need more magic at port ${1000}`)
+   
 })

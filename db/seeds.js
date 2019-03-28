@@ -26,5 +26,4 @@ const nemo = new User({
 
 User.remove({})
 .then(() => nemo.save())
-.then(() => console.log('save successful'))
 .then(() => mongoose.connection.close())

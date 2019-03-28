@@ -13,7 +13,7 @@ mongoose.connection.on('error', (err) => {
 })
 
 mongoose.connection.once('open', () => {
-    console.log("Mongoose connected to MongoDB")
+
 })
 
 module.exports = mongoose

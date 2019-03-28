@@ -33,15 +33,13 @@ export default class EditUser extends Component {
                     redirectToHome: true,
                     userEdited: res.data
                 })
-            }).catch((err) => {
-                console.log('error with editing user', err)
             })
     }
     handleChange = (e) => {
         const editUser = { ...this.state.user }
         editUser[e.target.name] = e.target.value
         this.setState({ user: editUser })
-        console.log("showing handleChange", e)
+       
     }
     handleEditAccount = (e) => {
         e.preventDefault()

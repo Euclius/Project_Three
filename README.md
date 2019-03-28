@@ -3,8 +3,9 @@ This app is for gathering ideas around Atlanta that do not have a cost and are f
 
 ## ERD
 https://trello.com/c/43i2mt0u/56-erd
-## Heroku
 
+## Heroku
+https://safe-tundra-11511.herokuapp.com/
 
 ## Trello Board
 https://trello.com/b/JV4RM7q3/project-three
@@ -36,4 +37,4 @@ https://trello.com/b/JV4RM7q3/project-three
 3. Cameron
 
 ## Version Two Desires
-Have a third model for comments. Stylize more. I too wanted a map to have a visual component so that the users can see where the activity is taking place; my plans were to use the javascript library leaflet. I too wanted to stylize with the keystone library. We had done a thumbs up or down in the gif exercise and I wanted to implement that. I also wanted to have an expand and a collapse button that would be underneath the title of the activity, which when clicked would show the description and legality (the properties of activity)
+Have a third model for comments. Stylize more. I too wanted a map to have a visual component so that the users can see where the activity is taking place; my plans were to use the javascript library leaflet. I too wanted to stylize with the keystone library. We had done a thumbs up or down in the gif exercise and I wanted to implement that. I also wanted to have an expand and a collapse button that would be underneath the title of the activity, which when clicked would show the description and legality (the properties of activity). Add more properties to User schema and Activity Schema.

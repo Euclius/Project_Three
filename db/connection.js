@@ -1,7 +1,7 @@
 require('dotenv').config()
-const mongoose= require('mongoose')
+const mongoose = require('mongoose')
 
-if(process.env.MONGODB_URI) {
+if (process.env.MONGODB_URI) {
     mongoose.connect(process.env.MONGODB_URI)
 } else {
     mongoose.connect('mongoose://localhost/AtlActivities')

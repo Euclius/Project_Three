@@ -3,20 +3,17 @@ import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-
 const Params = styled.h1`
 color: darkblue;
 `
 const Button = styled.button`
 background-color:green;
 `
-
 const Input = styled.input`
 background-color: black;
 color:white;
 font-size:20px;
 `
-
 export default class CreateActivity extends Component {
     state = {
         user: {
@@ -31,7 +28,6 @@ export default class CreateActivity extends Component {
         activities: [],
         redirectToHome: false
     }
-
     componentDidMount = () => {
         if (this.props.match.params) {
             axios.get(`/api/users/${this.props.match.params.userId}`)
@@ -74,13 +70,11 @@ export default class CreateActivity extends Component {
         if (this.state.redirectToHome === true) {
             return (<Redirect to={`/users/${this.state.user._id}`}></Redirect>)
         }
-
         return (
- 
             <div>
                 <Button>
-                <button><Link to='/'>Return Home</Link></button>
-</Button>
+                    <button><Link to='/'>Return Home</Link></button>
+                </Button>
                 <form onSubmit={this.handleActivityCreate}>
                     <div>
                         <Params><label htmlFor="title">Title: </label> </Params>
@@ -106,7 +100,6 @@ export default class CreateActivity extends Component {
                     <button>Post Activity!</button>
                 </form>
             </div>
-           
         )
     }
 }

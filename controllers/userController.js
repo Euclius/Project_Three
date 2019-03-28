@@ -86,18 +86,18 @@ router.delete('/:userId/activities/:activityId', (req, res) => {
 })
 //update activity
 router.put('/:userId/activities/:activityId', (req, res) => {
-const activity = req.params.activityId
-const userId = req.params.userId
-const updateActivity = req.body
-User.findByIdAndUpdate(userId).then((user) => {
-    const activityToUpdate = user.activity.id(activity)
-    activityToUpdate.title = updateActivity.title
-    activityToUpdate.description = updateActivity.description
-    activityToUpdate.legal = updateActivity.legal
-    return user.save()
-}).then((user) => {
-    res.json(user.activity.id(activity))
-})
+    const activity = req.params.activityId
+    const userId = req.params.userId
+    const updateActivity = req.body
+    User.findByIdAndUpdate(userId).then((user) => {
+        const activityToUpdate = user.activity.id(activity)
+        activityToUpdate.title = updateActivity.title
+        activityToUpdate.description = updateActivity.description
+        activityToUpdate.legal = updateActivity.legal
+        return user.save()
+    }).then((user) => {
+        res.json(user.activity.id(activity))
+    })
 })
 
 

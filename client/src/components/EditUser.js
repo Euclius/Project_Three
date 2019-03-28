@@ -36,7 +36,7 @@ export default class EditUser extends Component {
         const editUser = { ...this.state.user }
         editUser[e.target.name] = e.target.value
         this.setState({ user: editUser })
-       
+
     }
     handleEditAccount = (e) => {
         e.preventDefault()
@@ -49,7 +49,7 @@ export default class EditUser extends Component {
             return (<Redirect to={`/users/${this.state.user.userId}`}></Redirect>)
         }
         return (
-           
+
             <div>
                 <form onSubmit={this.HandleEditAccount}>
                     <div>
@@ -64,7 +64,7 @@ export default class EditUser extends Component {
                     <div><button>Update!</button></div>
                 </form>
             </div>
-           
+
         )
     }
 }

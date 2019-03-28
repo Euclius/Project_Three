@@ -55,15 +55,13 @@ export default class Username extends Component {
   render() {
 
     return (
-      
-      
       <div>
         <Button>
-        <button><Link to='/'>Home Page</Link></button>
-        <button><Link to={`/${this.state.user.userId}/createActivity`}>Create an Activity</Link></button>
-        <button onClick={() => this.deleteUser(this.state.user.userId)}>Delete user</button>
+          <button><Link to='/'>Home Page</Link></button>
+          <button><Link to={`/${this.state.user.userId}/createActivity`}>Create an Activity</Link></button>
+          <button onClick={() => this.deleteUser(this.state.user.userId)}>Delete user</button>
         </Button>
-       <Header> <h1>Activities from: 
+        <Header> <h1>Activities from:
           <Link to={`/users/${this.state.user.userId}`} key={this.state.user.userId}><div>{this.state.user.userName}</div>
           </Link>
         </h1></Header>
@@ -71,16 +69,15 @@ export default class Username extends Component {
           return (
             <Link to={`/${this.state.user.userId}/activityShow/${activity._id}`}
               key={activity._id}>
-             <div> {activity.title}</div>
+              <div> {activity.title}</div>
             </Link>
           )
         }
         )
         }
         </div></UL>
-
       </div>
-      
+
     )
   }
 }

@@ -3,9 +3,18 @@ import axios from 'axios'
 import {Redirect, Link} from 'react-router-dom'
 import styled from 'styled-components'
 
-// const StyledView = styled.View`
-// background-color: papayawhip;
-// `
+const Params = styled.h1`
+color: darkblue;
+`
+const Button = styled.button`
+background-color:green;
+`
+
+const Input = styled.input`
+background-color: black;
+color:white;
+font-size:20px;
+`
 
 export default class CreateAccount extends Component {
     state= {
@@ -44,23 +53,23 @@ export default class CreateAccount extends Component {
     return (
         // <StyledView>
       <div>
-          <Link to='/'>Return Home</Link>
+          <Button><button><Link to='/'>Return Home</Link></button></Button>
           <form onSubmit={this.handleSignUp}>
           <div>
-        <label htmlFor="userName">Username: </label>
-        <input onChange={this.handleChange}
+       <Params> <label htmlFor="userName">Username: </label></Params>
+        <Input onChange={this.handleChange}
         name="userName"
         type="text"
-        value={this.state.user.userName}></input>
+        value={this.state.user.userName}></Input>
         </div>
         <div>
-           <label htmlFor="password">Password: </label>
-           <input onChange={this.handleChange}
+           <Params><label htmlFor="password">Password: </label></Params>
+           <Input onChange={this.handleChange}
            name="password"
            type="password"
-           value={this.state.user.password}></input>
+           value={this.state.user.password}></Input>
         </div>
-    <div><button>Sign Up!</button></div>
+    <div><Button><button>Sign Up!</button></Button></div>
        </form>
       </div>
     //   </StyledView>

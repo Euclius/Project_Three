@@ -3,9 +3,18 @@ import axios from 'axios';
 import {Redirect} from 'react-router-dom'
 import styled from 'styled-components'
 
-// const StyledView = styled.View`
-// background-color: papayawhip;
-// `
+const Params = styled.h1`
+color: darkblue;
+`
+const Button = styled.button`
+background-color:green;
+`
+
+const Input = styled.input`
+background-color: black;
+color:white;
+font-size:20px;
+`
 
 export default class EditActivity extends Component {
 
@@ -69,27 +78,27 @@ handleActivityEdit = (event) => {
             <div>
                 <form onSubmit={this.handleActivityEdit}>
                     <div>
-                        <label htmlFor="title">Title: </label>
-                        <input onChange={this.handleAlter}
+                       <Params><label htmlFor="title">Title: </label></Params> 
+                        <Input onChange={this.handleAlter}
                             name="title"
                             type="text"
                             value={this.state.activity.title || ''}/>
                     </div>
                     <div>
-                        <label htmlFor="description">Description: </label>
-                        <input onChange={this.handleAlter}
+                        <Params><label htmlFor="description">Description: </label></Params>
+                        <Input onChange={this.handleAlter}
                             name="description"
                             type="text"
                             value={this.state.activity.description || ''}/>
                     </div>
                     <div>
-                        <label htmlFor="legal">Legal:</label>
-                        <input onChange={this.handleAlter}
+                        <Params><label htmlFor="legal">Legal:</label></Params>
+                        <Input onChange={this.handleAlter}
                             name="legal"
                             type="text"
                             value={this.state.activity.legal || ''}/>
                     </div>
-                    <button>Post Activity!</button>
+                    <Button><button>Post Activity!</button></Button>
                 </form>
             </div>
             // </StyledView>

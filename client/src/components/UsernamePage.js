@@ -8,7 +8,7 @@ background-color: green;
 `
 
 const Header = styled.h1`
-color:blueviolet;
+color:darkblue;
 font-size: 23px;
 `
 

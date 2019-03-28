@@ -7,6 +7,19 @@ import styled from 'styled-components'
 // background-color: papayawhip;
 // `
 
+const Params = styled.h1`
+color: darkblue;
+`
+const Button = styled.button`
+background-color:green;
+`
+
+const Input = styled.input`
+background-color: black;
+color:white;
+font-size:20px;
+`
+
 export default class CreateActivity extends Component {
     state = {
         user: {
@@ -43,18 +56,18 @@ export default class CreateActivity extends Component {
         axios.post(`/api/users/${userId}/activities/${activityId}`, {
             activity: this.state.activity
         }).then(res => {
-           
+
             const activityList = [...this.state.activities]
             activityList.unshift(res.data)
-            this.setState({redirectToHome: true, activity: res.data })
+            this.setState({ redirectToHome: true, activity: res.data })
         })
-        
+
     }
     handleAlter = (e) => {
         const newActivity = { ...this.state.activity }
         newActivity[e.target.name] = e.target.value
         this.setState({ activity: newActivity })
-       
+
     }
     handleActivityCreate = (e) => {
         e.preventDefault()
@@ -68,29 +81,30 @@ export default class CreateActivity extends Component {
         return (
             // <StyledView>
             <div>
-                <Link to='/'>Return Home</Link>
-
+                <Button>
+                <button><Link to='/'>Return Home</Link></button>
+</Button>
                 <form onSubmit={this.handleActivityCreate}>
                     <div>
-                        <label htmlFor="title">Title: </label>
-                        <input onChange={this.handleAlter}
+                        <Params><label htmlFor="title">Title: </label> </Params>
+                        <Input onChange={this.handleAlter}
                             name="title"
                             type="text"
-                            value={this.state.activity.title}></input>
+                            value={this.state.activity.title}></Input>
                     </div>
                     <div>
-                        <label htmlFor="description">description: </label>
-                        <input onChange={this.handleAlter}
+                        <Params> <label htmlFor="description">Description: </label></Params>
+                        <Input onChange={this.handleAlter}
                             name="description"
                             type="text"
-                            value={this.state.activity.description}></input>
+                            value={this.state.activity.description}></Input>
                     </div>
                     <div>
-                        <label htmlFor="legal">Legal:</label>
-                        <input onChange={this.handleAlter}
+                        <Params>     <label htmlFor="legal">Legal:</label></Params>
+                        <Input onChange={this.handleAlter}
                             name="legal"
                             type="text"
-                            value={this.state.activity.legal}></input>
+                            value={this.state.activity.legal}></Input>
                     </div>
                     <button>Post Activity!</button>
                 </form>

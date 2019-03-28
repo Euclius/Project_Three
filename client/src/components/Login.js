@@ -13,9 +13,10 @@ font-size: 23px;
 `
 const UL = styled.ul`
 color: green;
-font-size: 14px;
-vertical-align: baseline;
-text-decoration: none;
+padding: 5em;
+font-size: 18px;
+vertical-align: text-top;
+text-decoration:none;
 `
 
 export default class Login extends Component {
@@ -39,11 +40,11 @@ export default class Login extends Component {
         <button><Link to='/'> Return Home</Link></button>
         </Button>
         </div>
-         <Header> <h1>Pick which username you are</h1></Header>
+         <Header> <h1>Pick which username you are or view activities from other users.</h1></Header>
         <UL>
             <ul> {this.state.users.map((user) => {
               return (<Link to={`/users/${user._id}`} 
-              key={user._id}> {user.userName}</Link>)
+              key={user._id}> <div>{user.userName}</div> </Link>)
           })}</ul>
           </UL> 
           

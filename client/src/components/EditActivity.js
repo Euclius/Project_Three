@@ -32,11 +32,10 @@ const activityId = this.props.match.params.activityId
             activity: res.data, 
             activityEdited: true, 
             redirectToActivityPage: true
-        }).catch((err) => {
-            console.log('error with activityEdit function', err)
+        })
         })
 
-    })
+    
 }
 
 handleAlter = (e) => {

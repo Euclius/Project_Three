@@ -1,6 +1,13 @@
 import React, { Component } from "react"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import styled from 'styled-components'
+
+const Font = styled.div`
+color: tomato;
+font-size: 18px;
+padding: 3px;
+`
 
 export default class ActivityShow extends Component {
     state = {
@@ -45,11 +52,13 @@ export default class ActivityShow extends Component {
                 <div><Link to={`/${this.props.match.params.userId}/activities/${this.props.match.params.activityId}/edit`}>Edit Activity</Link></div>
                 <button onClick={() => this.deleteActivity(this.state.activity)}>Delete Activity</button>
                 <div>
+                    <Font>
                     <div key={this.state.activity._id}>
                         <div> title: {this.state.activity.title}</div>
-                        <div> description:{this.state.activity.description}</div>
-                        <div>legal:{this.state.activity.legal}</div>
+                        <div> description: {this.state.activity.description}</div>
+                        <div>legal: {this.state.activity.legal}</div>
                     </div>
+                    </Font>
                 </div>
             </div>
         )

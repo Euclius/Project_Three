@@ -110,8 +110,8 @@ router.put('/:userId/activities/:activityId', (req, res) => {
         oldActivity = update
         oldActivity.location = update.location
         user.save().then((user) => {
-            // user.activity = user.activity.reverse()
-            res.json(user, update)
+            user.activity = user.activity.reverse()
+            res.json(user)
             res.json("saved successfully")
         })
     })

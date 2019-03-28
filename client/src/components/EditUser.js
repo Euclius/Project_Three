@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
+
+// const StyledView = styled.View`
+// background-color: papayawhip;
+// `
 
 export default class EditUser extends Component {
     state = {
@@ -49,6 +54,7 @@ export default class EditUser extends Component {
             return (<Redirect to={`/users/${this.state.user.userId}`}></Redirect>)
         }
         return (
+            // <StyledView>
             <div>
                 <form onSubmit={this.HandleEditAccount}>
                     <div>
@@ -63,6 +69,7 @@ export default class EditUser extends Component {
                     <div><button>Update!</button></div>
                 </form>
             </div>
+            // </StyledView>
         )
     }
 }

@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {Redirect, Link} from 'react-router-dom'
+import styled from 'styled-components'
+
+// const StyledView = styled.View`
+// background-color: papayawhip;
+// `
 
 export default class CreateAccount extends Component {
     state= {
@@ -37,6 +42,7 @@ export default class CreateAccount extends Component {
          return (<Redirect to= {`/users/${this.state.createdUser._id}`}></Redirect>)
      }
     return (
+        // <StyledView>
       <div>
           <Link to='/'>Return Home</Link>
           <form onSubmit={this.handleSignUp}>
@@ -57,6 +63,7 @@ export default class CreateAccount extends Component {
     <div><button>Sign Up!</button></div>
        </form>
       </div>
+    //   </StyledView>
     )
   }
 }

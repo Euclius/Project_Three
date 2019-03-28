@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
+// const StyledView = styled.View`
+// background-color: papayawhip;
+// `
+
+const Button = styled.button`
+background-color: green;
+`
+
 const Font = styled.div`
 color: tomato;
 font-size: 18px;
@@ -46,11 +54,13 @@ export default class ActivityShow extends Component {
     render() {
 
         return (
+            // <StyledView>
             <div>
-                <div><Link to="/">Return Home</Link></div>
-                <div><Link to={`/${this.state.user.userId}/activity/${this.state.activityId}`}>Activity Page</Link></div>
-                <div><Link to={`/${this.props.match.params.userId}/activities/${this.props.match.params.activityId}/edit`}>Edit Activity</Link></div>
+                <Button>
+                <button><Link to="/">Return Home</Link></button>
+                <button><Link to={`/${this.props.match.params.userId}/activities/${this.props.match.params.activityId}/edit`}>Edit Activity</Link></button>
                 <button onClick={() => this.deleteActivity(this.state.activity)}>Delete Activity</button>
+                </Button>
                 <div>
                     <Font>
                     <div key={this.state.activity._id}>
@@ -61,6 +71,7 @@ export default class ActivityShow extends Component {
                     </Font>
                 </div>
             </div>
+            // </StyledView>
         )
     }
 }

@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import styled from 'styled-components'
 
+const Button = styled.button`
+background-color: green;
+`
+
 const Header = styled.h1`
 color:blueviolet;
 font-size: 23px;
@@ -41,9 +45,16 @@ export default class Username extends Component {
   }
 
   render() {
-    // console.log(this.state.user)
+
     return (
+      // <StyledView>
+      
       <div>
+        <Button>
+        <button><Link to='/'>Home Page</Link></button>
+        <button><Link to={`/${this.state.user.userId}/createActivity`}>Create an Activity</Link></button>
+        <button onClick={() => this.deleteUser(this.state.user.userId)}>delete user</button>
+        </Button>
        <Header> <h1>Activities from: 
           <Link to={`/users/${this.state.user.userId}`} key={this.state.user.userId}>{this.state.user.userName}
           </Link>
@@ -59,12 +70,9 @@ export default class Username extends Component {
         )
         }
         </div>
-        <div><Link to='/'>Home Page</Link></div>
-        <div><Link to={`/${this.state.user.userId}/createActivity`}>Create an Activity</Link></div>
-        <div><Link to={`/${this.state.user.userId}/edit`}>Edit User</Link></div>
-        <div><button onClick={() => this.deleteUser(this.state.user.userId)}>delete user</button></div>
 
       </div>
+      
     )
   }
 }

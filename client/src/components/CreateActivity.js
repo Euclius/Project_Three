@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect, Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+// const StyledView = styled.View`
+// background-color: papayawhip;
+// `
 
 export default class CreateActivity extends Component {
     state = {
@@ -38,19 +43,18 @@ export default class CreateActivity extends Component {
         axios.post(`/api/users/${userId}/activities/${activityId}`, {
             activity: this.state.activity
         }).then(res => {
-            console.log(res.data)
+           
             const activityList = [...this.state.activities]
             activityList.unshift(res.data)
             this.setState({redirectToHome: true, activity: res.data })
-        }).catch((err) => {
-            console.log('error with activity Create', err)
         })
+        
     }
     handleAlter = (e) => {
         const newActivity = { ...this.state.activity }
         newActivity[e.target.name] = e.target.value
         this.setState({ activity: newActivity })
-        // console.log("showing the handleAlter ", e)
+       
     }
     handleActivityCreate = (e) => {
         e.preventDefault()
@@ -62,6 +66,7 @@ export default class CreateActivity extends Component {
         }
 
         return (
+            // <StyledView>
             <div>
                 <Link to='/'>Return Home</Link>
 
@@ -90,6 +95,7 @@ export default class CreateActivity extends Component {
                     <button>Post Activity!</button>
                 </form>
             </div>
+            // </StyledView>
         )
     }
 }

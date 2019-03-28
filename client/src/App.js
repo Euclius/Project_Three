@@ -10,6 +10,10 @@ import ActivityShow from './components/ActivityShow.js'
 import EditUser from './components/EditUser.js';
 import EditActivity from './components/EditActivity.js';
 
+export const theme = {
+  primary:`#6e24c5`
+}
+
 class App extends Component {
   render() {
     return (

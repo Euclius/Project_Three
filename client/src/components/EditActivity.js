@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import {Redirect} from 'react-router-dom'
+import styled from 'styled-components'
+
+// const StyledView = styled.View`
+// background-color: papayawhip;
+// `
 
 export default class EditActivity extends Component {
 
@@ -26,13 +31,17 @@ componentDidMount = () => {
 activityEdit = () => {
 const userId = this.props.match.params.userId
 const activityId = this.props.match.params.activityId
-    axios.put(`/api/users/${userId}/activities/${activityId}`,this.state.activity)
+const payload = this.state.activity
+
+
+    axios.put(`/api/users/${userId}/activities/${activityId}`,payload)
     .then (res => {
         this.setState({
             activity: res.data, 
             activityEdited: true, 
-            redirectToActivityPage: true
+            // redirectToActivityPage: true
         })
+        this.props.history.goBack()
         })
 
     
@@ -56,6 +65,7 @@ handleActivityEdit = (event) => {
                 return (<Redirect to= {`/users/${this.state.userId}/activitiy/${this.state.activityEdited_id}`}></Redirect>)
             }
         return (
+            // <StyledView>
             <div>
                 <form onSubmit={this.handleActivityEdit}>
                     <div>
@@ -82,6 +92,7 @@ handleActivityEdit = (event) => {
                     <button>Post Activity!</button>
                 </form>
             </div>
+            // </StyledView>
         )
     }
 }

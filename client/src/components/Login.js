@@ -3,14 +3,19 @@ import {Link} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
+const Button = styled.button`
+background-color:green;
+`
+
 const Header = styled.h1`
-color:blueviolet;
+color:darkblue;
 font-size: 23px;
 `
 const UL = styled.ul`
 color: green;
 font-size: 14px;
 vertical-align: baseline;
+text-decoration: none;
 `
 
 export default class Login extends Component {
@@ -28,6 +33,12 @@ export default class Login extends Component {
   render() {
     return (
       <div>
+        <div>
+          <Button>
+          <button><Link to='/createAccount'>Create an account</Link></button>
+        <button><Link to='/'> Return Home</Link></button>
+        </Button>
+        </div>
          <Header> <h1>Pick which username you are</h1></Header>
         <UL>
             <ul> {this.state.users.map((user) => {
@@ -36,8 +47,7 @@ export default class Login extends Component {
           })}</ul>
           </UL> 
           
-        <div><Link to='/createAccount'>Create an account</Link></div>
-        <div><Link to='/'> Return Home</Link></div>
+        
       </div>
     )
   }

@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 
+// const StyledView = styled.view`
+// background-color: papayawhip;
+// `
+
 const UL = styled.ul`
 padding: 2px;
 border-radius: 2px;
@@ -25,7 +29,7 @@ export default class Activity extends Component {
     showAllActivites = () => {
         const userId = this.props.match.params.userId
         axios.get(`/api/users/${userId}`).then(res => {
-            console.log(res.data)
+           
             this.setState({
                 user: {
                     userName: res.data.userName,
@@ -37,8 +41,9 @@ export default class Activity extends Component {
         })
     }
     render() {
-        // console.log(this.state.activity, this.state.user)
+        
         return (
+            // <StyledView>
             <div>
                 <div><Link to='/'>Home Page</Link></div>
                 <div><Link to='/login'>Login Page</Link></div>
@@ -61,6 +66,7 @@ export default class Activity extends Component {
                 </UL>
 
             </div>
+            // {/* </StyledView> */}
         )
     }
 }

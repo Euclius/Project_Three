@@ -12,8 +12,8 @@ background-color: green;
 `
 
 const Font = styled.div`
-color: tomato;
-font-size: 18px;
+color: darkblue;
+font-size: 20px;
 padding: 3px;
 `
 
@@ -54,7 +54,7 @@ export default class ActivityShow extends Component {
     render() {
 
         return (
-            // <StyledView>
+          
             <div>
                 <Button>
                 <button><Link to="/">Return Home</Link></button>
